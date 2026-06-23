@@ -17,7 +17,7 @@ function getHumanChoice(){
     return result.toLowerCase();
 }//getHumanChoice
 
-function round(computerChoice,humanChoice){
+function playRound(computerChoice,humanChoice){
     console.log("Computer: "+ computerChoice+"\nHuman: "+humanChoice);
     if(computerChoice === humanChoice){
         return "draw";
@@ -40,4 +40,4 @@ function round(computerChoice,humanChoice){
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(round(getComputerChoice(), getHumanChoice()));
+console.log(playRound(getComputerChoice(), getHumanChoice()));
