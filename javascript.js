@@ -17,8 +17,27 @@ function getHumanChoice(){
     return result.toLowerCase();
 }//getHumanChoice
 
+function round(computerChoice,humanChoice){
+    console.log("Computer: "+ computerChoice+"\nHuman: "+humanChoice);
+    if(computerChoice === humanChoice){
+        return "draw";
+    }else if(computerChoice === "rock" && humanChoice === "paper"){
+        return "human wins";
+    }else if(computerChoice === "rock" && humanChoice === "scissors"){
+        return "computer wins";
+    }else if(computerChoice === "paper" && humanChoice === "rock"){
+        return "computer wins";
+    }else if(computerChoice === "paper" && humanChoice === "scissors"){
+        return "human wins";
+    }else if(computerChoice === "scissors" && humanChoice ==="rock"){
+        return "human wins";
+    }else if(computerChoice === "scissors" && humanChoice === "paper"){
+        return "computer wins";
+    }else{
+        return "I'm Not Sure who won??!!";
+    }
+}//round
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(getComputerChoice());
-console.log(getHumanChoice());
+console.log(round(getComputerChoice(), getHumanChoice()));
