@@ -12,8 +12,8 @@ function getComputerChoice(){
     }
 }//getComputer Choice
 
-function getHumanChoice(){
-    let result = prompt("Enter rock, paper, or scissors");
+function getHumanChoice(roundNumber){
+    let result = prompt("Round "+roundNumber+"\nEnter rock, paper, or scissors");
     return result.toLowerCase();
 }//getHumanChoice
 
@@ -46,8 +46,8 @@ function playRound(computerChoice,humanChoice){
 
 function playGame(){
     for(let i=0; i<5; i++){
-        console.log("Round " +i);
-        console.log(playRound(getComputerChoice(), getHumanChoice()));
+        console.log("Round " +(i+1));
+        console.log(playRound(getComputerChoice(), getHumanChoice(i+1)));
         console.log("Score: Human-"+humanScore+" Computer-"+computerScore);
     }//5 rounds
     if(humanScore > computerScore){
