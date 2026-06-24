@@ -22,22 +22,44 @@ function playRound(computerChoice,humanChoice){
     if(computerChoice === humanChoice){
         return "draw";
     }else if(computerChoice === "rock" && humanChoice === "paper"){
+        humanScore += 1;
         return "human wins";
     }else if(computerChoice === "rock" && humanChoice === "scissors"){
+        computerScore += 1;
         return "computer wins";
     }else if(computerChoice === "paper" && humanChoice === "rock"){
+        computerScore += 1;
         return "computer wins";
     }else if(computerChoice === "paper" && humanChoice === "scissors"){
+        humanScore += 1;
         return "human wins";
     }else if(computerChoice === "scissors" && humanChoice ==="rock"){
+        humanScore += 1;
         return "human wins";
     }else if(computerChoice === "scissors" && humanChoice === "paper"){
+        computerScore += 1;
         return "computer wins";
     }else{
         return "I'm Not Sure who won??!!";
     }
 }//round
+
+function playGame(){
+    for(let i=0; i<5; i++){
+        console.log("Round " +i);
+        console.log(playRound(getComputerChoice(), getHumanChoice()));
+        console.log("Score: Human-"+humanScore+" Computer-"+computerScore);
+    }//5 rounds
+    if(humanScore > computerScore){
+        console.log("Game Over: the human wins!");
+    }else if(computerScore > humanScore){
+        console.log("Game Over: the computer wins!");
+    }else{
+        console.log("Game over: It's a tie! Please play again");
+    }
+}
 let humanScore = 0;
 let computerScore = 0;
 
-console.log(playRound(getComputerChoice(), getHumanChoice()));
+playGame();
+
