@@ -1,4 +1,23 @@
-console.log("Hello World");
+const btnContainer = document.querySelector("#btnContainer");
+const msg = document.querySelector("#msgBanner");
+
+btnContainer.addEventListener('click', (e)=>{
+    let btn = e.target.id;
+    switch(btn){
+        case 'rock':
+            //playRound(getComputerChoice(), "rock");
+            console.log("Rock was pressed");
+            break;
+        case 'paper':
+            //playRound(getComputerChoice(), "paper");
+            console.log("Paper was pressed");
+            break;
+        case 'scissors':
+           // playRound(getComputerChoice(), "scissors");
+           console.log("Scissors was pressed"); 
+           break;
+    }//switch
+});
 
 function getComputerChoice(){
     let x = Math.floor(Math.random()*3);
@@ -12,10 +31,10 @@ function getComputerChoice(){
     }
 }//getComputer Choice
 
-function getHumanChoice(roundNumber){
-    let result = prompt("Round "+roundNumber+"\nEnter rock, paper, or scissors");
-    return result.toLowerCase();
-}//getHumanChoice
+// function getHumanChoice(roundNumber){
+//     let result = prompt("Round "+roundNumber+"\nEnter rock, paper, or scissors");
+//     return result.toLowerCase();
+// }//getHumanChoice
 
 function playRound(computerChoice,humanChoice){
     console.log("Computer: "+ computerChoice+"\nHuman: "+humanChoice);
@@ -45,11 +64,11 @@ function playRound(computerChoice,humanChoice){
 }//round
 
 function playGame(){
-    for(let i=0; i<5; i++){
-        console.log("Round " +(i+1));
-        console.log(playRound(getComputerChoice(), getHumanChoice(i+1)));
-        console.log("Score: Human-"+humanScore+" Computer-"+computerScore);
-    }//5 rounds
+    //for(let i=0; i<5; i++){
+    //     console.log("Round " +(i+1));
+    //     console.log(playRound(getComputerChoice(), getHumanChoice(i+1)));
+    //     console.log("Score: Human-"+humanScore+" Computer-"+computerScore);
+    // }//5 rounds
     if(humanScore > computerScore){
         console.log("Game Over: the human wins!");
     }else if(computerScore > humanScore){
@@ -61,5 +80,5 @@ function playGame(){
 let humanScore = 0;
 let computerScore = 0;
 
-playGame();
+//playGame();
 
