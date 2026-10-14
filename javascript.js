@@ -1,21 +1,25 @@
 const btnContainer = document.querySelector("#btnContainer");
-const msg = document.querySelector("#msgBanner");
+const msgBanner = document.querySelector("#msgBanner");
+const winnerAnnouncement = document.querySelector("#winnerAnnouncement");
+const scoreBoard = document.querySelector("#scoreBoard");
 
 btnContainer.addEventListener('click', (e)=>{
     let btn = e.target.id;
+    if(newGameBit){
+        humanScore = 0;
+        computerScore = 0;
+        newGameBit = 0;
+    }
     switch(btn){
         case 'rock':
-            //playRound(getComputerChoice(), "rock");
-            console.log("Rock was pressed");
+            playRound(getComputerChoice(), "rock");
             break;
         case 'paper':
-            //playRound(getComputerChoice(), "paper");
-            console.log("Paper was pressed");
+            playRound(getComputerChoice(), "paper");
             break;
         case 'scissors':
-           // playRound(getComputerChoice(), "scissors");
-           console.log("Scissors was pressed"); 
-           break;
+            playRound(getComputerChoice(), "scissors");
+            break;
     }//switch
 });
 
@@ -23,6 +27,7 @@ function getComputerChoice(){
     let x = Math.floor(Math.random()*3);
     if (x === 0){
         return "rock";
+        
     
     }else if(x===1){
         return "paper";
@@ -37,33 +42,52 @@ function getComputerChoice(){
 // }//getHumanChoice
 
 function playRound(computerChoice,humanChoice){
-    console.log("Computer: "+ computerChoice+"\nHuman: "+humanChoice);
+    msgBanner.textContent = `Computer Choice: ${computerChoice}\nHuman Choice: ${humanChoice}`;
     if(computerChoice === humanChoice){
-        return "draw";
+        updateBanner("draw");
     }else if(computerChoice === "rock" && humanChoice === "paper"){
-        humanScore += 1;
-        return "human wins";
+        updateBanner("humanWins");
     }else if(computerChoice === "rock" && humanChoice === "scissors"){
-        computerScore += 1;
-        return "computer wins";
+        updateBanner("computerWins");
     }else if(computerChoice === "paper" && humanChoice === "rock"){
-        computerScore += 1;
-        return "computer wins";
+        updateBanner("computerWins");
     }else if(computerChoice === "paper" && humanChoice === "scissors"){
-        humanScore += 1;
-        return "human wins";
+       updateBanner("humanWins");
     }else if(computerChoice === "scissors" && humanChoice ==="rock"){
-        humanScore += 1;
-        return "human wins";
+      updateBanner("humanWins");
     }else if(computerChoice === "scissors" && humanChoice === "paper"){
-        computerScore += 1;
-        return "computer wins";
+       updateBanner("computerWins");
     }else{
         return "I'm Not Sure who won??!!";
     }
 }//round
 
+function updateBanner(winner){
+    if (winner === "draw"){
+         winnerAnnouncement.textContent = "It's a Draw!";
+    }else if(winner === "humanWins"){
+         winnerAnnouncement.textContent = "The Human Wins the Round!";
+         humanScore += 1;
+    }else if(winner === "computerWins"){
+         winnerAnnouncement.textContent = "The Computer Wins the Round!";
+         computerScore += 1;
+    }
+   
+    scoreBoard.textContent = `Human Score: ${humanScore}  Computer Score: ${computerScore}`;
+    
+    if(humanScore >= 5){
+        winnerAnnouncement.textContent = "The Human Wins the GAME!! Click a button to start the next game!";
+        newGameBit = 1;
+    }
+    if(computerScore >= 5){
+        winnerAnnouncement.textContent = "The Computer Wins the GAME!!\nClick a button to start the next game!";
+        newGameBit =1;
+    }
+}
 function playGame(){
+    
+    
+    
     //for(let i=0; i<5; i++){
     //     console.log("Round " +(i+1));
     //     console.log(playRound(getComputerChoice(), getHumanChoice(i+1)));
@@ -79,6 +103,7 @@ function playGame(){
 }
 let humanScore = 0;
 let computerScore = 0;
+let newGameBit = 0;
 
 //playGame();
 
